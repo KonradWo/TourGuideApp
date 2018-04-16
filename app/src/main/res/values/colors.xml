@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#827717</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="background_place">#FFFFFF</color>
+    <color name="background_tabs">#CDDC39</color>
+    <color name="background_listview">#CDDC39</color>
+    <color name="place_name">#746a13</color>
+</resources>
