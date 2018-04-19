@@ -12,30 +12,52 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PlaceAdapter extends ArrayAdapter<Place> {
     public PlaceAdapter(Context context, ArrayList<Place> places) {
         super(context, 0, places);
     }
 
+    static class ViewHolder {
+        @BindView(R.id.text_name)
+        TextView nameTextView;
+        @BindView(R.id.text_address)
+        TextView addressTextView;
+        @BindView(R.id.text_phone)
+        TextView phoneTextView;
+        @BindView(R.id.text_website)
+        TextView websiteTextView;
+        @BindView(R.id.image_place)
+        ImageView placeImageView;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        ViewHolder holder;
+
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.list_item, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         Place currentPlace = getItem(position);
 
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.text_name);
-        nameTextView.setText(currentPlace.getName());
-        TextView addressTextView = (TextView) convertView.findViewById(R.id.text_address);
-        addressTextView.setText(currentPlace.getAddress());
-        TextView phoneTextView = (TextView) convertView.findViewById(R.id.text_phone);
-        phoneTextView.setText(currentPlace.getPhone());
-        TextView websiteTextView = (TextView) convertView.findViewById(R.id.text_website);
-        websiteTextView.setText(currentPlace.getWebsite());
-        ImageView placeImageView = (ImageView) convertView.findViewById(R.id.image_place);
-        placeImageView.setImageResource(currentPlace.getImageResourceId());
+        holder.nameTextView.setText(currentPlace.getName());
+        holder.addressTextView.setText(currentPlace.getAddress());
+        holder.phoneTextView.setText(currentPlace.getPhone());
+        holder.websiteTextView.setText(currentPlace.getWebsite());
+        holder.placeImageView.setImageResource(currentPlace.getImageResourceId());
 
         return convertView;
     }

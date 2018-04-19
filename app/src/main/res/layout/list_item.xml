@@ -14,8 +14,7 @@
             android:id="@+id/image_place"
             android:layout_width="match_parent"
             android:layout_height="@dimen/place_image_height"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
